@@ -21,3 +21,11 @@ struct Node* createNode(int id, char nama[], char jabatan[]) {
 
     return newNode;
 }
+
+int isEmpty(struct Node* root) {
+    return (root == NULL);
+}
+
+int isLeaf(struct Node* node) {
+    return (node->firstChild == NULL);
+}
