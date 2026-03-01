@@ -85,3 +85,63 @@ struct Node* searchNode(struct Node* root, int id) {
     // kl di anak ngga ada, cari ke samping (ke saudara saudaranya)
     return searchNode(root->nextSibling, id);
 }
+
+//RemoveChild (Hapus Bawahan)
+void removeChild(struct Node* parent, struct Node* child) {
+    if (parent == NULL || child == NULL) return;
+
+    struct Node* curr = parent->firstChild;
+    struct Node* prev = NULL;
+
+    while (curr != NULL) {
+        if (curr == child) {
+            if (prev == NULL) {
+                parent->firstChild = curr->nextSibling;
+            } else {
+                prev->nextSibling = curr->nextSibling;
+            }
+            return;
+        }
+        prev = curr;
+        curr = curr->nextSibling;
+    }
+}
+
+// menghapus node + seluruh subtree-nya
+void deleteSubtree(struct Node* target) {
+    if (target == NULL) return;
+
+    struct Node* child = target->firstChild;
+
+    while (child != NULL) {
+        struct Node* next = child->nextSibling;
+        deleteSubtree(child);     // hapus anak dulu
+        child = next;
+    }
+}
+//UpdateNote (Perbarui)
+void updateNode(struct Node* target, char namaBaru[], char jabatanBaru[]) { //edit data pegawai
+    if (target == NULL) return; //ganti nama jabatan
+    
+    strcpy(target->nama, namaBaru); //node gak ada, ga bisa ganti
+    strcpy(target->jabatan, jabatanBaru); //ganti nama lama ke baru
+
+}
+//countSubordinates (Hitung)
+int countSubordinates(struct Node* target) { //hitung jumlah pegawai
+    if (target == NULL) return 0; //balikin jumlah bawahan
+    
+    int total = 0; //gak ada ya = bawahan 0
+    struct Node* child = target->firstChild; //var jumlah bawahan
+    
+    while (child != NULL) { //hitung anak 1
+        total++; //next selagi punya
+        total += countSubordinates(child); //anak hitung satu
+        child = child->nextSibling; //hitung cucu
+        }
+        
+        return total; 
+} 
+
+
+

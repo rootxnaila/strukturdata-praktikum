@@ -20,4 +20,10 @@ void addChild(struct Node* parent, struct Node* child);
 void displayTree(struct Node* root, int depth);
 struct Node* searchNode(struct Node* root, int id);
 
+//zhull
+void removeChild(struct Node* parent, struct Node* child);
+void deleteSubtree(struct Node* target);
+void updateNode(struct Node* target, char namaBaru[], char jabatanBaru[]);
+int countSubordinates(struct Node* target);
+
 #endif

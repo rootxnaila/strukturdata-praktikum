@@ -50,5 +50,24 @@ int main() {
         printf(">> MAAF, Pegawai dengan ID %d tidak ditemukan.\n", idDicari);
     }
 
+    //panggil fitur delete subtree (HR)
+    printf("\nMenghapus seluruh Divisi HR...\n");
+    
+    removeChild(ceo, headHR);  
+    deleteSubtree(headHR);                           
+    headHR = NULL;
+    
+    printf("\nStruktur organisasi setelah penghapusan HR:\n");
+    displayTree(ceo, 0);
+    
+    //panggil fitur update node
+    printf("\nUpdate data pegawai ID 102...\n");
+    updateNode(staffIT1, "Naila (Updated)", "Senior Staff IT");
+    
+    //panggol fitur count subordinatesprintf("Total bawahan Head IT: %d\n", countSubordinates(headIT));
+    printf("Total bawahan CEO: %d\n", countSubordinates(ceo));
+
     return 0;
 }
+
+
